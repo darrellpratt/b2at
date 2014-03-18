@@ -1,5 +1,4 @@
-var request = require('request'),
-    jsdom = require('jsdom').jsdom;
+var request = require('request');
 
 exports.findById = function(req, res) {
     console.log(req.params);
@@ -7,36 +6,44 @@ exports.findById = function(req, res) {
     console.log('findById: ' + id);
 
     var url = require('url');
-  
+
     var cheerio = require('cheerio');
     var CR = "";
+    var headers = ["ID", "Type","Information","Description"];
+    var dict = [];
+    var matched = false;
 
-    request('http://b2at-dev.nielsen.com/ViewReport.aspx?report=find&q=329', function(error, response, body) {
+    request('http://b2at-dev.nielsen.com/ViewReport.aspx?report=find&q=' + id, function(error, response, body) {
       // Hand the HTML response off to Cheerio and assign that to
       //  a local $ variable to provide familiar jQuery syntax.
       var $ = cheerio.load(body);
 
       // Exactly the same code that we used in the browser before:
       $('td').each(function (item) {
-        // console.log("this: " + $(this).text());
-        if ($(this).text().match("CR")) {
-          // console.log("found match");
+        if ($(this).text() === "CR" || $(this).text() === "ER") {
+          console.log("found match on: " + $(this).text());
           $(this).addClass("cr");
+          $(this).parent().addClass("cr");
           matched = true;
+          // return false;
         }
       });
 
       if (matched) {
-        $('td.cr').parent().children('td').each( function (item) {
+        var i = 0;
+        $('tr.cr').children('td').each( function (item) {
           CR = CR.concat($(this).text() + "<br/>");
-          // console.log("i: " + item)
+          dict.push({
+            key: headers[i],
+            value: $(this).text().trim()
+          });
+          console.log(headers[i] + " " + $(this).text().trim());
+          i++;
         })
-        //console.log(CR);
+
       }
 
-      console.log(CR);
-      res.writeHead(200, {'Content-Type': 'text/plain'});
-      res.end(CR);
+    res.json(dict);
 
 
     });
