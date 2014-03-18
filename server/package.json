@@ -1,0 +1,13 @@
+{
+    "name": "b2at",
+    "description": "B2AT skimmer",
+    "version": "0.0.1",
+    "private": false,
+    "dependencies": {
+        "express": "3.x",
+        "jsdom": "*",
+        "jquery": "*",
+        "http-agent": "*"
+
+    }
+}
