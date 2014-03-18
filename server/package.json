@@ -7,7 +7,8 @@
         "express": "3.x",
         "jsdom": "*",
         "jquery": "*",
-        "http-agent": "*"
+        "http-agent": "*",
+        "request": "*"
 
     }
 }
