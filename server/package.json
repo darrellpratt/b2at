@@ -8,7 +8,8 @@
         "jsdom": "*",
         "jquery": "*",
         "http-agent": "*",
-        "request": "*"
+        "request": "*",
+        "underscore": "*"
 
     }
 }
