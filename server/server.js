@@ -4,10 +4,10 @@ var express = require('express'),
 
 var app = express();
 app.use(express.bodyParser());
-app.use(express.static(path.join(__dirname, '../client')));
+app.use(express.static(path.join(__dirname, '../client/app')));
 
 // app.get('/cr/:id/reports', employees.findByManager);
-app.get('/cr/:id', cr.findById);
+app.get('/api/cr/:id', cr.findById);
 // app.get('/employees', employees.findAll);
 
 app.listen(3000);

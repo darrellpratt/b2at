@@ -1,4 +1,4 @@
-'use strict';
+//'use strict';
 
 // angular.module('app', [
 //   'ngCookies',
@@ -17,4 +17,4 @@
 //       });
 //   });
 
-window.App = angular.module('app', ['ngRoute', 'ngResource', 'ngCookies']);
+window.App = angular.module('app', ['ngRoute', 'ngResource']);

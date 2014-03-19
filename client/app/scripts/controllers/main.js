@@ -1,10 +1,14 @@
 'use strict';
 
 angular.module('app')
-  .controller('MainController', function ($scope) {
-    $scope.CR = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('MainController', function ($scope, $routeParams, ChangeRequest) {
+
+    $scope.search = function () {
+      // Get CR ID ??
+      var cr;
+      cr = ChangeRequest.get({'id': $scope.id});
+      $scope.cr = cr;
+      // $scope.post = Post.get({id: $routeParams.id}, success);
+      console.log(cr);
+    };
   });

@@ -1,15 +1,59 @@
 var request = require('request');
 
+var getRemoteItem = function(id) {
+  console.log('fetching item: ' + id);
+  var cheerio = require('cheerio');
+  var CR = new Object();
+  var headers = ["ID", "Type","Title", "Information","Description"];
+  var dict = [];
+  var matched = false;
+
+  request('http://b2at-dev.nielsen.com/ViewReport.aspx?report=find&q=' + id, function(error, response, body) {
+    var $ = cheerio.load(body);
+    // Exactly the same code that we used in the browser before:
+    $('td').each(function (item) {
+      if ($(this).text() === "CR" || $(this).text() === "ER") {
+        console.log("found match on: " + $(this).text());
+        $(this).addClass("cr");
+        $(this).parent().addClass("cr");
+        matched = true;
+        return false;
+      }
+    });
+
+    if (matched) {
+      var i = 0;
+      $('tr.cr').children('td').each( function (item) {
+        dict.push({
+          key: headers[i],
+          value: $(this).text().trim()
+        });
+        CR[headers[i].toLowerCase()] = $(this).text().trim();
+        i++;
+      })
+    }
+    console.log(CR);
+  });
+};
+
+exports.findByIdX = function(req, res) {
+    console.log(req.params);
+    var id = parseInt(req.params.id);
+
+    var CR =  getRemoteItem(id);
+
+    res.json(CR);
+};
+
 exports.findById = function(req, res) {
     console.log(req.params);
     var id = parseInt(req.params.id);
+    getRemoteItem(id);
     console.log('findById: ' + id);
 
-    var url = require('url');
-
     var cheerio = require('cheerio');
-    var CR = "";
-    var headers = ["ID", "Type","Information","Description"];
+    var CR = new Object();
+    var headers = ["ID", "Type","Title", "Information","Description"];
     var dict = [];
     var matched = false;
 
@@ -25,25 +69,29 @@ exports.findById = function(req, res) {
           $(this).addClass("cr");
           $(this).parent().addClass("cr");
           matched = true;
-          // return false;
+          return false;
         }
       });
 
       if (matched) {
         var i = 0;
         $('tr.cr').children('td').each( function (item) {
-          CR = CR.concat($(this).text() + "<br/>");
+          // CR = CR.concat($(this).text() + "<br/>");
           dict.push({
             key: headers[i],
             value: $(this).text().trim()
           });
-          console.log(headers[i] + " " + $(this).text().trim());
+          CR[headers[i].toLowerCase()] = $(this).text().trim();
+          // console.log(headers[i] + " " + $(this).text().trim());
           i++;
         })
 
       }
-
-    res.json(dict);
+      // console.log(dict);
+      // CR.id = dict[0].value;
+      // CR.attrs = dict;
+      console.log(CR);
+      res.json(CR);
 
 
     });
