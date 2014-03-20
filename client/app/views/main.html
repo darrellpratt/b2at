@@ -1,34 +1,31 @@
 
 <div class="container-fluid">
-<div class="header">
-  <h4 class="text-muted">b2at quick finder</h3>
-</div>
+  <div class="header">
+    <h4 class="text-muted">b2at quick finder</h3>
+    </div>
 
-<div class="row">
-  <div class="col-md-8">
-    <form class="form-inline" role="form" ng-control="MainController">
-       <div class="input-group">
-        <input type="text" class="form-control" ng-model="id" placeholder="CR/ER ###">
-        <span class="input-group-btn">
-          <button class="btn btn-default" type="submit" ng-click="search()">Go!</button>
-        </span>
+    <div class="row">
+      <div class="col-md-8">
+        <form class="form-inline" role="form" ng-control="MainController">
+          <div class="input-group">
+            <input type="text" class="form-control" ng-model="id" placeholder="CR/ER ###">
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="submit" ng-click="search()">Go!</button>
+            </span>
+          </div>
+        </form>
       </div>
-    </form>
+      <div class="col-md-4"></div>
+    </div>
+
+
+    <p/>
+
+    <div class="jumbotron">
+      <h3 class="text-left">{{cr.title}}</h3>
+      <p></p>
+      <blockquote>
+        <p class="text-left">{{cr.description}}</p>
+      </blockquote>
+    </div>
   </div>
-  <div class="col-md-4"></div>
-</div>
-
-<div class="" >
-
-</div>
-
-<p/>
-
-<div class="jumbotron">
-  <h3 class="text-left">{{cr.title}}</h3>
-  <p></p>
-  <blockquote>
-    <p class="text-left">{{cr.description}}</p>
-  </blockquote>
-</div>
-</div>
