@@ -18,3 +18,4 @@
 //   });
 
 window.App = angular.module('app', ['ngRoute', 'ngResource']);
+// var App = angular.module('app', ['ngRoute', 'ngResource']);

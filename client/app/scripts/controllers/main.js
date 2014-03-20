@@ -6,10 +6,15 @@ angular.module('app')
     $scope.search = function () {
       // Get CR ID ??
       var cr;
-      cr = ChangeRequest.get({'id': $scope.id});
-      console.log(cr);
-      $scope.cr = cr;
-      // $scope.post = Post.get({id: $routeParams.id}, success);
-      console.log(cr);
+      if ($scope.id === Number.NaN) {
+        $scope.cr = {};
+      } else {
+        cr = ChangeRequest.get({'id': $scope.id});
+        console.log(cr);
+        $scope.cr = cr;
+        // $scope.post = Post.get({id: $routeParams.id}, success);
+        console.log(cr);
+      }
+
     };
   });
