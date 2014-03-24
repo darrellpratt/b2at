@@ -19,3 +19,6 @@
 
 window.App = angular.module('app', ['ngRoute', 'ngResource']);
 // var App = angular.module('app', ['ngRoute', 'ngResource']);
+// window.App.config(function ($locationProvider) {
+  // $locationProvider.html5Mode = true;
+// });
