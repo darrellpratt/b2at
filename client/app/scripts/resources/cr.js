@@ -23,7 +23,6 @@ window.App.factory('ChangeRequest', function($resource) {
   //
   //
   // return ChangeRequest;
-
   var ChangeRequest = $resource('/api/cr/:id', { id:'@id' });
   return ChangeRequest;
 
