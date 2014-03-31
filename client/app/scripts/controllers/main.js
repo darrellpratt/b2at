@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-.controller('MainController', function ($location, $scope, $routeParams, $window, ChangeRequest) {
+.controller('MainController', function ($timeout, $location, $scope, $routeParams, $window, ChangeRequest) {
 
   $scope.search = function () {
     // Get CR ID ??
