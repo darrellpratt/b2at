@@ -57,11 +57,19 @@ exports.findByIdX = function(req, res) {
     res.json(CR);
 };
 
+exports.mockFindById = function(req, res) {
+  console.log(req.params);
+  var CR = new Object();
+  CR['id'] = parseInt(req.params.id);
+  CR['title'] = 'CR Title here';
+  CR['description'] = 'Description here';
+  res.json(CR);
+};
+
 exports.findById = function(req, res) {
     console.log(req.params);
-    console.log('here');
     var id = parseInt(req.params.id);
-    getRemoteItem(id);
+    // getRemoteItem(id);
     console.log('findById: ' + id);
 
     var cheerio = require('cheerio');
