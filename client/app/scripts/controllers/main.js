@@ -1,24 +1,26 @@
 'use strict';
 
 angular.module('app')
-.controller('MainController', function ($timeout, $location, $scope, $routeParams, $window, ChangeRequest) {
+.controller('MainController', function ($location, $scope, $routeParams, $window, ChangeRequest) {
+
+  $scope.bucket = [];
 
   $scope.search = function () {
     // Get CR ID ??
-    var cr;
+    // var cr;
     if ($scope.id === Number.NaN) {
       $scope.cr = {};
     } else {
-      cr = ChangeRequest.get({'id': $scope.id});
-      $scope.cr = cr;
-      // $scope.post = Post.get({id: $routeParams.id}, success);
-      console.log(cr);
-      // console.log($location.url());
-      // $location.hash($scope.id);
-      // console.log($location.url());
-      // console.log('id: ' + cr.id);
-      // $window.localStorage.setItem('test', JSON.stringify(cr));
-    }
+      // cr = ChangeRequest.get({'id': $scope.id});
+      // $scope.cr = cr;
+      ChangeRequest.get({'id': $scope.id}, function(cr) {
+        console.log(cr);
+        $scope.cr = cr;
+        // $scope.bucket.push(cr);
+        // console.log('bucket: ' + $scope.bucket);
+      });
+
+    };
 
   };
 });
