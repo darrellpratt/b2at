@@ -1,4 +1,6 @@
 var request = require('request');
+var couchbase = require('couchbase');
+var db = new couchbase.Connection({host: '10.14.31.24:8091', bucket: 'default'});
 
 var getRemoteItem = function(id) {
   console.log('fetching item: ' + id);
@@ -78,24 +80,47 @@ exports.findById = function(req, res) {
     var dict = [];
     var matched = false;
 
+    db.get(id, function(err, result) {
+      if (err) {
+        // Failed to retrieve key
+        console.log("no key in couchbase");
+        request('http://b2at-dev.nielsen.com/ViewReport.aspx?report=scope&scope=' + id, function(error, response, body) {
+          var $ = cheerio.load(body);
+          if ($('.itext').length > 0) {
 
-    request('http://b2at-dev.nielsen.com/ViewReport.aspx?report=scope&scope=' + id, function(error, response, body) {
-        var $ = cheerio.load(body);
-        if ($('.itext').length > 0) {
+            $('#scopeitem').children('h1').each(function (item) {
+              console.log($(this).text());
 
-          $('#scopeitem').children('h1').each(function (item) {
-            console.log($(this).text());
+              CR['id'] = id;
+              CR['title'] = $(this).text();
+            });
+            CR['description'] = $('.itext').text();
+            CR.type = "B2AT";
+            console.log(CR);
+          }
 
-            CR['id'] = id;
-            CR['title'] = $(this).text();
-          });
-          CR['description'] = $('.itext').text();
+          db.set(id, CR, {expiry: 0}, function(err, result) {
+            if (err) {
+              console.log("Error on fetching couchbase item");
+              console.log(err);
+            }
+          })
+
           console.log(CR);
-        }
+          res.json(CR);
+        });
+      } else {
+        console.log("couch");
+        res.json(result.value);
+        console.log("result");
+        console.log(result);
 
-      console.log(CR);
-      res.json(CR);
-    });
+      };
+
+      
+    })
+
+    
 
     // };
 
