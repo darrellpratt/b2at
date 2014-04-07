@@ -14,7 +14,7 @@ angular.module('app')
       // cr = ChangeRequest.get({'id': $scope.id});
       // $scope.cr = cr;
       ChangeRequest.get({'id': $scope.id}, function(cr) {
-        console.log(cr);
+        // console.log(cr);
         $scope.cr = cr;
         // $scope.bucket.push(cr);
         // console.log('bucket: ' + $scope.bucket);
@@ -23,4 +23,23 @@ angular.module('app')
     };
 
   };
+
+  $scope.save = function (id) {
+    console.log($scope.cr);
+    if (_.indexOf($scope.bucket, $scope.cr)) {
+      $scope.bucket.unshift($scope.cr);
+    }
+    // console.log($scope.bucket);
+  };
+
+  $scope.load = function(itemId) {
+    console.log($scope.itemId);
+    console.log(itemId);
+    ChangeRequest.get({'id': itemId}, function(cr) {
+        // console.log(cr);
+        $scope.cr = cr;
+        // $scope.bucket.push(cr);
+        // console.log('bucket: ' + $scope.bucket);
+      });
+  }
 });

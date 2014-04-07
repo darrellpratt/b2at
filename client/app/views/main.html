@@ -1,14 +1,14 @@
 
-<div class="container-fluid">
+<div class="container-fluid" ng-control="MainController">
   <div class="header">
     <h4 class="text-muted">b2at quick finder</h3>
     </div>
 
     <div class="row">
       <div class="col-md-8">
-        <form class="form-inline" role="form" ng-control="MainController">
+        <form class="form-inline" role="form">
           <div class="input-group">
-            <input type="text" class="form-control"
+            <input type="tel" class="form-control"
                 ng-model="id" placeholder="CR/ER ###" ng-keyup="search()" ng-init"count = 0">
             <span class="input-group-btn">
               <button class="btn btn-default" type="submit" ng-click="search()">Go!</button>
@@ -23,18 +23,28 @@
     <p/>
 
     <div class="jumbotron">
-      <h3 class="text-left">{{cr.title}}</h3>
+      <div class="row">
+      <div class="col-md-11">    
+        <h3 class="text-left">{{cr.title}}</h3>
+      </div>
+      <span ng-if="_.indexOf($scope.bucket, cr.id) > 0">blah</span>
+      <div class="col-md-1"><a href="" ng-click="save('{{cr.id}}')"><span class="glyphicon glyphicon-star-empty"></span></a></div>
+      </div>
+      <div class="row">
+      <div class="col-mid-12">
       <p></p>
       <blockquote>
         <p class="text-left">{{cr.description}}</p>
       </blockquote>
+      </div>
+      </div>
     </div>
   </div>
 
 <div>
   <ul>
     <li ng-repeat="item in bucket">
-      {{item.title}}
+      <a href="" ng-click="load(item.id)">{{item.title}}</a>
     </li>
   </ul>
 </div>
