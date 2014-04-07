@@ -9,7 +9,8 @@
         "jquery": "*",
         "http-agent": "*",
         "request": "*",
-        "underscore": "*"
+        "underscore": "*",
+        "newrelic": "*"
 
     }
 }
