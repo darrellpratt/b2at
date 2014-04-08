@@ -27,10 +27,18 @@ angular.module('app')
     if (_.indexOf($scope.bucketList, $scope.cr.id) < 0) {
       $scope.bucket.unshift($scope.cr);
       $scope.bucketList.unshift(id);
+
       // $window.localStorage.setItem('bucket', $scope.bucket);
       bucketStorage.remove();
       bucketStorage.put($scope.bucket);
-    }
+    } else {
+
+      var i = $scope.bucketList.indexOf(id);
+      $scope.bucketList.splice(i, 1);
+      $scope.bucket.splice(i, 1);
+    };
+    console.log($scope.bucketList);
+    console.log($scope.bucket);
   };
 
   $scope.load = function(itemId) {
