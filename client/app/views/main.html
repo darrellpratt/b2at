@@ -18,17 +18,21 @@
       </div>
       <div class="col-md-4"></div>
     </div>
-{{count}}
+
 
     <p/>
 
     <div class="jumbotron">
       <div class="row">
-      <div class="col-md-11">    
+      <div class="col-md-11">
         <h3 class="text-left">{{cr.title}}</h3>
       </div>
-      <span ng-if="_.indexOf($scope.bucket, cr.id) > 0">blah</span>
-      <div class="col-md-1"><a href="" ng-click="save('{{cr.id}}')"><span class="glyphicon glyphicon-star-empty"></span></a></div>
+      <div class="col-md-1">
+        <a href="" ng-click="save(cr.id)">
+          <span ng-if="bucketList.indexOf(cr.id) > -1"><span class="glyphicon glyphicon-star"></span></span>
+          <span ng-if="bucketList.indexOf(cr.id) < 0"><span class="glyphicon glyphicon-star-empty"></span></span>
+        </a>
+      </div>
       </div>
       <div class="row">
       <div class="col-mid-12">
@@ -43,7 +47,7 @@
 
 <div>
   <ul>
-    <li ng-repeat="item in bucket">
+    <li ng-repeat="item in bucket track by item.id">
       <a href="" ng-click="load(item.id)">{{item.title}}</a>
     </li>
   </ul>
