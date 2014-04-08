@@ -45,9 +45,10 @@
     </div>
   </div>
 
-<div>
-  <ul>
-    <li ng-repeat="item in bucket track by item.id">
+<div class="panel panel-default">
+  <div class="panel-heading">Saved Items</div>
+  <ul class="list-group">
+    <li class="list-group-item" ng-repeat="item in bucket track by item.id">
       <a href="" ng-click="load(item.id)">{{item.title}}</a>
     </li>
   </ul>
