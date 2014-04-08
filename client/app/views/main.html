@@ -2,54 +2,72 @@
 <div class="container-fluid" ng-control="MainController">
   <div class="header">
     <h4 class="text-muted">b2at quick finder</h3>
-    </div>
-
-    <div class="row">
-      <div class="col-md-8">
-        <form class="form-inline" role="form">
-          <div class="input-group">
-            <input type="tel" class="form-control"
-                ng-model="id" placeholder="CR/ER ###" ng-keyup="search()" ng-init"count = 0">
-            <span class="input-group-btn">
-              <button class="btn btn-default" type="submit" ng-click="search()">Go!</button>
-            </span>
-          </div>
-        </form>
-      </div>
-      <div class="col-md-4"></div>
-    </div>
-
-
-    <p/>
-
-    <div class="jumbotron">
-      <div class="row">
-      <div class="col-md-11">
-        <h3 class="text-left">{{cr.title}}</h3>
-      </div>
-      <div class="col-md-1">
-        <a href="" ng-click="save(cr.id)">
-          <span ng-if="bucketList.indexOf(cr.id) > -1"><span class="glyphicon glyphicon-star"></span></span>
-          <span ng-if="bucketList.indexOf(cr.id) < 0"><span class="glyphicon glyphicon-star-empty"></span></span>
-        </a>
-      </div>
-      </div>
-      <div class="row">
-      <div class="col-mid-12">
-      <p></p>
-      <blockquote>
-        <p class="text-left">{{cr.description}}</p>
-      </blockquote>
-      </div>
-      </div>
-    </div>
   </div>
 
-<div class="panel panel-default">
-  <div class="panel-heading">Saved Items</div>
-  <ul class="list-group">
-    <li class="list-group-item" ng-repeat="item in bucket track by item.id">
-      <a href="" ng-click="load(item.id)">{{item.title}}</a>
-    </li>
-  </ul>
+  <div class="row">
+    <div class="col-md-8">
+      <form class="form-inline" role="form">
+        <div class="input-group">
+          <input type="tel" class="form-control"
+              ng-model="id" placeholder="CR/ER ###" ng-keyup="search()" ng-init"count = 0">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="submit" ng-click="search()">Go!</button>
+          </span>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-4"></div>
+  </div>
+
+
+  <p/>
+
+  <div class="jumbotron">
+    <div class="row">
+    <div class="col-md-11">
+      <h3 class="text-left">{{cr.title}}</h3>
+    </div>
+    <div class="col-md-1">
+      <a href="" ng-click="save(cr.id)">
+        <span ng-if="bucketList.indexOf(cr.id) > -1"><span class="glyphicon glyphicon-star"></span></span>
+        <span ng-if="bucketList.indexOf(cr.id) < 0"><span class="glyphicon glyphicon-star-empty"></span></span>
+      </a>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-mid-12">
+    <p></p>
+    <blockquote>
+      <p class="text-left">{{cr.description}}</p>
+    </blockquote>
+    </div>
+    </div>
+  </div>
+  
+
+
+  <div class="panel panel-default">
+    <div class="panel-heading">Saved Items</div>
+    <ul class="list-group">
+      <li class="list-group-item" ng-repeat="item in bucket track by item.id">
+        <a href="" ng-click="load(item.id)">{{item.title}}</a>
+      </li>
+    </ul>
+  </div>
+
+ <div class="panel panel-default">
+  <div class="panel-heading">Social</div>
+  <div class="panel-body">
+    <div class="input-group">
+      <input type="text" ng-model="name" placeholder="Name" class="form-control">
+      <input type="text" ng-model="msg" ng-keydown="addMessage($event)" placeholder="Message..." class="form-control">
+    </div>
+    <p></p>
+    <div id="messagesDiv" class="alert alert-success">
+      <div ng-repeat="msg in messages"><em>{{msg.from}}</em>: {{msg.body}}</div>
+    </div>
+  </div>
+  </div>
+     
+
 </div>

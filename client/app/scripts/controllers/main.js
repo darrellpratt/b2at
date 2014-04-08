@@ -2,7 +2,7 @@
 
 
 angular.module('app')
-.controller('MainController', function ($location, $scope, $window, ChangeRequest, bucketStorage) {
+.controller('MainController', function ($location, $scope, $window, ChangeRequest, bucketStorage, $firebase) {
 
   // load our local storage
   $scope.bucket = bucketStorage.get();
@@ -11,6 +11,11 @@ angular.module('app')
   _.each($scope.bucket, function(i) {
     $scope.bucketList.unshift(i.id);
   })
+
+  var ref = new Firebase("https://amber-fire-1059.firebaseio.com/");
+  ref.endAt().limit(5);
+  $scope.messages = $firebase(ref);
+  console.log($scope.messages);
 
 
   $scope.search = function () {
@@ -31,11 +36,16 @@ angular.module('app')
       // $window.localStorage.setItem('bucket', $scope.bucket);
       bucketStorage.remove();
       bucketStorage.put($scope.bucket);
+      var msg = $scope.cr.title + " was favorited";
+      $scope.messages.$add({from: 'b2at bot', body: msg});
     } else {
 
       var i = $scope.bucketList.indexOf(id);
       $scope.bucketList.splice(i, 1);
       $scope.bucket.splice(i, 1);
+      bucketStorage.remove();
+      bucketStorage.put($scope.bucket);
+
     };
     console.log($scope.bucketList);
     console.log($scope.bucket);
@@ -49,4 +59,12 @@ angular.module('app')
         $scope.cr = cr;
       });
   }
+
+  $scope.addMessage = function(e) {  
+    if (e.keyCode != 13) return;
+    $scope.messages.$add({from: $scope.name, body: $scope.msg});
+    $scope.msg = "";
+  };
+
+
 });

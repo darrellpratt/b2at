@@ -12,6 +12,7 @@
         "underscore": "*",
         "newrelic": "*",
         "couchbase": "*",
-        "cheerio": "*"
+        "cheerio": "*",
+        "firebase": "*"
     }
 }

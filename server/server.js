@@ -3,6 +3,10 @@ var express = require('express'),
     path = require('path'),
     cr = require('./routes/cr');
 
+var Firebase = require('firebase');
+var myRootRef = new Firebase('https://amber-fire-1059.firebaseio.com/');
+myRootRef.set("hello world!");
+
 var app = express();
 app.use(express.bodyParser());
 app.use(express.static(path.join(__dirname, '../client/app')));
