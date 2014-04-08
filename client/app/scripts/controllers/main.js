@@ -4,14 +4,14 @@
 angular.module('app')
 .controller('MainController', function ($location, $scope, $window, ChangeRequest, bucketStorage) {
 
+  // load our local storage
   $scope.bucket = bucketStorage.get();
-  $scope.bucketList = bucketStorage.get();
+  $scope.bucketList = [];
+  // build track list from the object array if there
+  _.each($scope.bucket, function(i) {
+    $scope.bucketList.unshift(i.id);
+  })
 
-
-  $scope.run = function() {
-    console.log("init");
-
-  }
 
   $scope.search = function () {
     if ($scope.id === Number.NaN) {
