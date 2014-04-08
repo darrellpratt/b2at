@@ -19,7 +19,7 @@ angular.module('app')
 
 
   $scope.search = function () {
-    if ($scope.id === Number.NaN) {
+    if ($scope.id === Number.NaN || $scope.id === '') {
       $scope.cr = {};
     } else {
       ChangeRequest.get({'id': $scope.id}, function(cr) {
@@ -60,7 +60,7 @@ angular.module('app')
       });
   }
 
-  $scope.addMessage = function(e) {  
+  $scope.addMessage = function(e) {
     if (e.keyCode != 13) return;
     $scope.messages.$add({from: $scope.name, body: $scope.msg});
     $scope.msg = "";

@@ -1,4 +1,4 @@
-require ('newrelic');
+//require ('newrelic');
 var express = require('express'),
     path = require('path'),
     cr = require('./routes/cr');
@@ -8,8 +8,13 @@ var myRootRef = new Firebase('https://amber-fire-1059.firebaseio.com/');
 myRootRef.set("hello world!");
 
 var app = express();
+app.use(express.logger());
+app.use(express.compress());
+
 app.use(express.bodyParser());
+// app.use(express.staticCache());
 app.use(express.static(path.join(__dirname, '../client/app')));
+
 
 app.get('/api/cr/:id', cr.findById);
 app.get('/api/cr/mock/:id', cr.mockFindById);
