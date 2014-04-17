@@ -2,7 +2,7 @@
 
 
 angular.module('app')
-.controller('MainController', function ($location, $scope, $window, ChangeRequest, bucketStorage, $firebase) {
+.controller('MainController', function ($location, $resource, $scope, $window, ChangeRequest, SlackMessage, bucketStorage, $firebase) {
 
   // load our local storage
   $scope.bucket = bucketStorage.get();
@@ -58,13 +58,25 @@ angular.module('app')
     ChangeRequest.get({'id': itemId}, function(cr) {
         $scope.cr = cr;
       });
-  }
+  };
 
   $scope.addMessage = function(e) {
     if (e.keyCode != 13) return;
     $scope.messages.$add({from: $scope.name, body: $scope.msg});
     $scope.msg = "";
   };
+
+  $scope.slack = function(itemId) {
+    console.log(itemId);
+    $scope.id = itemId;
+    SlackMessage.get({'id': itemId}, function(cr) {
+        console.log('done');
+            
+    });
+  };
+
+  
+  
 
 
 });

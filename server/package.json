@@ -6,6 +6,7 @@
     "dependencies": {
         "express": "3.x",
         "jsdom": "*",
+        "JSON": "*",
         "jquery": "*",
         "http-agent": "*",
         "request": "*",
@@ -13,6 +14,7 @@
         "newrelic": "*",
         "couchbase": "*",
         "cheerio": "*",
-        "firebase": "*"
+        "firebase": "*",
+        "form-data":"*"
     }
 }
