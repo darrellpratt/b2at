@@ -1,5 +1,7 @@
 var request = require('request');
+var formdata = require('form-data');
 var couchbase = require('couchbase');
+var JSON = require('JSON');
 var db = new couchbase.Connection({host: '10.14.31.24:8091', bucket: 'default'});
 
 var getRemoteItem = function(id) {
@@ -79,13 +81,33 @@ exports.findById = function(req, res) {
         console.log(result);
 
       };
-
-
     })
-
-
-
     // };
+};
 
+
+exports.pushToSlack = function(req, res) {
+  console.log('pushing to slack.com');
+  var id = parseInt(req.params.id);
+  var url = 'https://nielsen-buy.slack.com/services/hooks/incoming-webhook?token=f9DiEn10DkL2DAITVYFow68J';
+
+  db.get(id, function(err, result) {
+    console.log(result);
+    if (err) {
+      console.log('no cr');
+      console.log(err);
+    } else {
+      var cr = result.value;
+      cr.text = '*' + cr.title + '*' + '\n' + cr.description;
+      console.log(cr);
+
+      request.post(url, {form:{payload: JSON.stringify(cr)}}, function() {
+        console.log('after post');
+        res.send(200);
+      });
+      
+
+    }
+  })
 
 };

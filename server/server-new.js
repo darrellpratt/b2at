@@ -21,5 +21,5 @@ app.get('/api/cr/mock/:id', cr.mockFindById);
 
 app.get('/api/cr/slack/:id', cr.pushToSlack);
 
-app.listen(3000);
-console.log('Listening on port 3000...');
+app.listen(9000);
+console.log('Listening on port 9000...');

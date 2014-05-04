@@ -28,10 +28,8 @@
       <h3 class="text-left">{{cr.title}}</h3>
     </div>
     <div class="col-md-1">
-      <a href="" ng-click="save(cr.id)">
-        <span ng-if="bucketList.indexOf(cr.id) > -1"><span class="glyphicon glyphicon-star"></span></span>
-        <span ng-if="bucketList.indexOf(cr.id) < 0"><span class="glyphicon glyphicon-star-empty"></span></span>
-      </a>
+      <a href="" ng-click="save(cr.id)"><span ng-if="bucketList.indexOf(cr.id) > -1"><span class="glyphicon glyphicon-star"></span></span>
+        <span ng-if="bucketList.indexOf(cr.id) < 0"><span class="glyphicon glyphicon-star-empty"></span></span></a>
     </div>
     </div>
     <div class="row">
@@ -40,6 +38,14 @@
     <blockquote>
       <p class="text-left">{{cr.description}}</p>
     </blockquote>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-md-11">
+     
+    </div>
+    <div class="col-md-1">
+     <a href="" ng-click="slack(cr.id)"><img src="images/slack_logo_header.png" border="0" width="20" height="20"></a>
     </div>
     </div>
   </div>
@@ -69,6 +75,6 @@
   </div>
   </div>
   <iframe src="http://ghbtns.com/github-btn.html?user=darrellpratt&repo=b2at&type=follow"
-  allowtransparency="true" frameborder="0" scrolling="0" width="132" height="20"></iframe>
+  allowtransparency="true" frameborder="0" scrolling="0" width="150" height="20"></iframe>
 
 </div>
