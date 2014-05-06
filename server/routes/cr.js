@@ -3,6 +3,7 @@ var formdata = require('form-data');
 var couchbase = require('couchbase');
 var JSON = require('JSON');
 var db = new couchbase.Connection({host: '10.14.31.24:8091', bucket: 'default'});
+//var db = new couchbase.Connection({host: '0.0.0.0:8091', bucket: 'default'});
 
 var getRemoteItem = function(id) {
   console.log('fetching item: ' + id);
@@ -49,6 +50,7 @@ exports.findById = function(req, res) {
       if (err) {
         // Failed to retrieve key
         console.log("no key in couchbase");
+        //request('http://b2at-dev.nielsen.com/ViewReport.aspx?report=scope&scope=' + id, function(error, response, body) {
         request('http://b2at-dev.nielsen.com/ViewReport.aspx?report=scope&scope=' + id, function(error, response, body) {
           var $ = cheerio.load(body);
           if ($('.itext').length > 0) {
