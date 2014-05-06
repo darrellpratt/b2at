@@ -17,7 +17,9 @@ ADD . /src
 # Install app dependencies
 RUN cd /src/server; npm install
 
+RUN npm install nodemon
+
 
 EXPOSE 3000
 
-CMD ["node", "/src/server/server.js"]
+CMD ["nodemon", "/src/server/server.js"]
