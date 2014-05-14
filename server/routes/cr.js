@@ -1,5 +1,5 @@
 var request = require('request');
-var formdata = require('form-data');
+// var formdata = require('form-data');
 var couchbase = require('couchbase');
 var JSON = require('JSON');
 var db = new couchbase.Connection({host: '10.14.31.24:8091', bucket: 'default'});
@@ -20,7 +20,6 @@ var getRemoteItem = function(id) {
     });
     CR['description'] = $('.itext').text();
   });
-
 };
 
 
@@ -105,7 +104,7 @@ exports.pushToSlack = function(req, res) {
         console.log('after post');
         res.send(200);
       });
-      
+
 
     }
   })

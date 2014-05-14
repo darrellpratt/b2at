@@ -2,7 +2,7 @@
 
 
 angular.module('app')
-.controller('MainController', function ($location, $resource, $scope, $window, ChangeRequest, SlackMessage, bucketStorage, $firebase) {
+.controller('MainController', function ($timeout, $location, $routeParams, $resource, $scope, $window, ChangeRequest, SlackMessage, bucketStorage, $firebase) {
 
   // load our local storage
   $scope.bucket = bucketStorage.get();
@@ -17,13 +17,37 @@ angular.module('app')
   $scope.messages = $firebase(ref);
   console.log($scope.messages);
 
+  // console.log($location);
+  console.log($routeParams);
 
-  $scope.search = function () {
+  if ($routeParams.crid) {
+    $scope.id = $routeParams.crid;
+    console.log($scope.id);
     if ($scope.id === Number.NaN || $scope.id === '') {
       $scope.cr = {};
     } else {
       ChangeRequest.get({'id': $scope.id}, function(cr) {
         $scope.cr = cr;
+      });
+
+  };
+}
+
+  $scope.search = function () {
+    console.log('into search');
+    if ($scope.id === Number.NaN || $scope.id === '') {
+      $scope.cr = {};
+    } else {
+      ChangeRequest.get({'id': $scope.id}, function(cr) {
+        $scope.cr = cr;
+        // $routeParams.crid = $scope.id;
+        $timeout(function () {
+          console.log($location.path());
+          $location.path('/cr/' + $scope.id);
+          console.log($scope);
+          console.log('scope: ' + $scope.id + ' route: ' + $routeParams.crid);
+        }, 2000);
+
       });
     };
   };
@@ -71,12 +95,12 @@ angular.module('app')
     $scope.id = itemId;
     SlackMessage.get({'id': itemId}, function(cr) {
         console.log('done');
-            
+
     });
   };
 
-  
-  
+
+
 
 
 });

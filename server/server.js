@@ -15,7 +15,10 @@ app.use(express.bodyParser());
 // app.use(express.staticCache());
 app.use(express.static(path.join(__dirname, '../client/app')));
 
-
+app.get('/cr/:id', function(req, res) {
+  console.log('into cr/:id');
+  res.redirect('/#/cr/' + req.params.id)
+});
 app.get('/api/cr/:id', cr.findById);
 app.get('/api/cr/mock/:id', cr.mockFindById);
 

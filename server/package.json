@@ -1,20 +1,20 @@
 {
-    "name": "b2at",
-    "description": "B2AT skimmer",
-    "version": "0.0.2",
-    "private": false,
-    "dependencies": {
-        "express": "3.x",
-        "jsdom": "*",
-        "JSON": "*",
-        "jquery": "*",
-        "http-agent": "*",
-        "request": "*",
-        "underscore": "*",
-        "newrelic": "*",
-        "couchbase": "*",
-        "cheerio": "*",
-        "firebase": "*",
-        "form-data":"*"
-    }
+  "name": "b2at",
+  "description": "B2AT skimmer",
+  "version": "0.0.2",
+  "private": false,
+  "dependencies": {
+    "express": "3.x",
+    "jsdom": "*",
+    "JSON": "^1.0.0",
+    "jquery": "*",
+    "http-agent": "*",
+    "request": "*",
+    "underscore": "*",
+    "newrelic": "*",
+    "couchbase": "*",
+    "cheerio": "*",
+    "firebase": "*",
+    "form-data": "*"
+  }
 }
