@@ -79,9 +79,10 @@ angular.module('app')
     // console.log($scope.itemId);
     console.log(itemId);
     $scope.id = itemId;
-    ChangeRequest.get({'id': itemId}, function(cr) {
-        $scope.cr = cr;
-      });
+    // ChangeRequest.get({'id': itemId}, function(cr) {
+    //     $scope.cr = cr;
+    //   });
+    $location.path('/cr/' + $scope.id);
   };
 
   $scope.addMessage = function(e) {
