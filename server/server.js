@@ -20,7 +20,7 @@ myRootRef.on('child_added', function(snapshot) {
             console.log('------');
             var crJson = JSON.parse(body);
             var cr = new Object();
-            cr.text = '*' + crJson.title + '*' + '\n' + crJson.description;
+            cr.text = '*' + crJson.title + '*' + '\n```' + crJson.description + '```';
             console.log('sending; ' + JSON.stringify(cr));
             var url = 'https://nielsen-buy.slack.com/services/hooks/incoming-webhook?token=f9DiEn10DkL2DAITVYFow68J';
  

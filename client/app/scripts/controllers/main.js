@@ -56,8 +56,6 @@ angular.module('app')
     if (_.indexOf($scope.bucketList, $scope.cr.id) < 0) {
       $scope.bucket.unshift($scope.cr);
       $scope.bucketList.unshift(id);
-
-      // $window.localStorage.setItem('bucket', $scope.bucket);
       bucketStorage.remove();
       bucketStorage.put($scope.bucket);
       var msg = $scope.cr.title + " was favorited";
@@ -72,6 +70,7 @@ angular.module('app')
 
     };
     console.log($scope.bucketList);
+    // console.log(_.sortBy($scope.bucket, 'id'));
     console.log($scope.bucket);
   };
 
