@@ -78,9 +78,7 @@ angular.module('app')
     // console.log($scope.itemId);
     console.log(itemId);
     $scope.id = itemId;
-    // ChangeRequest.get({'id': itemId}, function(cr) {
-    //     $scope.cr = cr;
-    //   });
+    $window.document.body.scrollTop = 0;
     $location.path('/cr/' + $scope.id);
   };
 
