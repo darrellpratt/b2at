@@ -3,6 +3,9 @@
   "description": "B2AT skimmer",
   "version": "0.0.2",
   "private": false,
+  "scripts": {
+    "start": "node server"
+  },
   "dependencies": {
     "express": "3.x",
     "jsdom": "*",
