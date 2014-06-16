@@ -97,7 +97,7 @@ exports.pushToSlack = function(req, res) {
       console.log(err);
     } else {
       var cr = result.value;
-      cr.text = '*' + cr.title + '*' + '\n' + cr.description;
+      cr.text = '*' + cr.title + '*' + '\n```' + cr.description +  '```';
       console.log(cr);
 
       request.post(url, {form:{payload: JSON.stringify(cr)}}, function() {
