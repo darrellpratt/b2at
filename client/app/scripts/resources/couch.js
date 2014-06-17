@@ -2,7 +2,10 @@
 
 window.App.factory('Couchbase', function($resource) {
   var Couchbase = $resource('/api/cr/couch/:id', {}, {
-  		delete: {method: 'DELETE', params: {id: '@id'}}
+  		delete: {
+  			method: 'DELETE', 
+			params: {id: '@id'}
+		}
   });
 
   return Couchbase;

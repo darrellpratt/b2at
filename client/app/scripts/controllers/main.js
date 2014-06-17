@@ -104,7 +104,7 @@ angular.module('app')
   $scope.couch = function(itemId) {
     $scope.id = itemId;
     console.log('couch delete on: ' + itemId);
-    Couchbase.delete(itemId);
+    Couchbase.delete({id:itemId}, function(){});
 
   };
 
