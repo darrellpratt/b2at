@@ -5,7 +5,8 @@ angular.module('app')
 .controller('MainController', function ($timeout, $location, $routeParams, 
                                         $resource, $scope, $window, 
                                         ChangeRequest, SlackMessage, 
-                                        bucketStorage, $firebase) {
+                                        bucketStorage, $firebase,
+                                        Couchbase) {
 
   // load our local storage
   $scope.bucket = bucketStorage.get();
@@ -100,6 +101,12 @@ angular.module('app')
     });
   };
 
+  $scope.couch = function(itemId) {
+    $scope.id = itemId;
+    console.log('couch delete on: ' + itemId);
+    Couchbase.delete(itemId);
+
+  };
 
 
 
