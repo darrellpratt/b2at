@@ -2,7 +2,10 @@
 
 
 angular.module('app')
-.controller('MainController', function ($timeout, $location, $routeParams, $resource, $scope, $window, ChangeRequest, SlackMessage, bucketStorage, $firebase) {
+.controller('MainController', function ($timeout, $location, $routeParams, 
+                                        $resource, $scope, $window, 
+                                        ChangeRequest, SlackMessage, 
+                                        bucketStorage, $firebase) {
 
   // load our local storage
   $scope.bucket = bucketStorage.get();
