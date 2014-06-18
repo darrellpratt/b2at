@@ -101,10 +101,12 @@ angular.module('app')
     });
   };
 
-  $scope.couch = function(itemId) {
-    $scope.id = itemId;
+  $scope.couch = function() {
+    var itemId = $scope.id;
     console.log('couch delete on: ' + itemId);
-    Couchbase.delete({id:itemId}, function(){});
+    Couchbase.delete({'id' : itemId}, function(item){
+      console.log('deleted item: ' + item);
+    });
 
   };
 
