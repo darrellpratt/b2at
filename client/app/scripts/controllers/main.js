@@ -95,7 +95,7 @@ angular.module('app')
   $scope.slack = function(itemId) {
     console.log(itemId);
     $scope.id = itemId;
-    SlackMessage.get({'id': itemId}, function(cr) {
+    SlackMessage.put({'id': itemId}, function(cr) {
         console.log('done');
 
     });

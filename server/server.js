@@ -54,7 +54,7 @@ app.get('/cr/:id', function(req, res) {
 app.get('/api/cr/:id', cr.findById);
 app.get('/api/cr/mock/:id', cr.mockFindById);
 
-app.get('/api/cr/slack/:id', cr.pushToSlack);
+app.put('/api/cr/slack/:id', cr.pushToSlack);
 
 app.delete('/api/cr/couch/:id', cr.deleteFromCouch)
 
