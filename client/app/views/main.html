@@ -28,8 +28,8 @@
       <h3 class="text-left">{{cr.title}}</h3>
     </div>
     <div class="col-md-1">
-      <a href="" ng-click="save(cr.id)" alt="save to favorites"><span ng-if="bucketList.indexOf(cr.id) > -1"><span class="glyphicon glyphicon-star"></span></span>
-        <span ng-if="bucketList.indexOf(cr.id) < 0"><span class="glyphicon glyphicon-star-empty"></span></span></a>
+      <a href="" ng-click="save(cr.id)" alt="save to favorites"><span ng-if="bucketList.indexOf(cr.id) > -1"><span class="glyphicon glyphicon-star"></span></span><span ng-if="bucketList.indexOf(cr.id) < 0"><span class="glyphicon glyphicon-star-empty"></span></span></a> 
+         <a href="" ng-click="couch(scope.id)" alt="clean the couch"><i class="glyphicon glyphicon-refresh" ></i></a>
     </div>
     </div>
     <div class="row">
@@ -45,7 +45,7 @@
      
     </div>
     <div class="col-md-1">
-     <a href="" ng-click="slack(cr.id)" alt="push to slack.io"><img src="images/slack_logo_header.png" border="0" width="20" height="20"></a> <a href="" ng-click="couch(scope.id)" alt="clean the couch"><img src="images/undo-6.png" border="0" width="20" height="20"></a>
+     <a href="" ng-click="slack(cr.id)" alt="push to slack.io"><img src="images/slack_logo_header.png" border="0" width="22" height="22"></a>
     </div>
     </div>
   </div>

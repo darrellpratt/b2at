@@ -106,6 +106,7 @@ angular.module('app')
     console.log('couch delete on: ' + itemId);
     Couchbase.delete({'id' : itemId}, function(item){
       console.log('deleted item: ' + item);
+      $scope.search();
     });
 
   };
