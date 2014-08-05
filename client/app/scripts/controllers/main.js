@@ -50,7 +50,7 @@ angular.module('app')
           $location.path('/cr/' + $scope.id);
           console.log($scope);
           console.log('scope: ' + $scope.id + ' route: ' + $routeParams.crid);
-        }, 2000);
+        }, 4000);
 
       });
     };
