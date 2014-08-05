@@ -28,21 +28,12 @@ var getRemoteItem = function(id) {
 
 exports.mockFindById = function(req, res) {
     console.log(req.params);
-    // var CR = new Object();
-    // CR['id'] = parseInt(req.params.id);
-    // CR['title'] = 'CR Title here';
-    // CR['description'] = 'Description here';
+    var CR = new Object();
+    CR['id'] = parseInt(req.params.id);
+    CR['title'] = 'CR Title here';
+    CR['description'] = 'Description here';
     // res.json(CR);
     var id = parseInt(req.params.id);
-
-    request('https://ishare.nielsen.com/teams/gps/appdev/platformrequirements/Lists/Enhancement%20Requests/EditForm.aspx?ID=' + id, 
-      function (error, response, body) {
-        var cheerio = require('cheerio');
-        var $ = cheerio.load(body);
-        console.log(body);
-        console.log(error);
-      }).auth('enterprise\pratda01', 'Darr3ll876', true)
-
 };
 
 exports.findById = function(req, res) {
