@@ -16,12 +16,12 @@ angular.module('app')
     $scope.bucketList.unshift(i.id);
   })
 
+  // real time messages from firebase on favorite activity
   var ref = new Firebase("https://amber-fire-1059.firebaseio.com/");
   ref.endAt().limit(5);
   $scope.messages = $firebase(ref);
   console.log($scope.messages);
 
-  // console.log($location);
   console.log($routeParams);
 
   if ($routeParams.crid) {

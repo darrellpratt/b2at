@@ -2,7 +2,7 @@
 'use strict';
 
 /**
- * Services that persists and retrieves TODOs from localStorage.
+ * Service that integrates to slack.
  */
  window.App.factory('slack', function () {
 
