@@ -5,7 +5,8 @@ var express = require('express'),
     request = require('request');
 
 var JSON = require('JSON');
- 
+
+// Firebase.com realtime messaging.  Used for inbound requests from slack.
 var Firebase = require('firebase');
 var myRootRef = new Firebase('https://slackintegrator-dp.firebaseio.com/cr/request');
 myRootRef.on('child_added', function(snapshot) {
@@ -15,7 +16,7 @@ myRootRef.on('child_added', function(snapshot) {
         var out = crId.substr(crId.indexOf(':') + 1, crId.length).trim();
         console.log('looking for cr: ' + out);
         request('http://localhost:3000/api/cr/' + out, function(error, response, body) {
-        		console.log('received result from request');
+            console.log('received result from request');
             console.log('BODY: ' + body);
             console.log('------');
             var crJson = JSON.parse(body);
@@ -23,7 +24,7 @@ myRootRef.on('child_added', function(snapshot) {
             cr.text = '*' + crJson.title + '*' + '\n```' + crJson.description + '```';
             console.log('sending; ' + JSON.stringify(cr));
             var url = 'https://nielsen-buy.slack.com/services/hooks/incoming-webhook?token=f9DiEn10DkL2DAITVYFow68J';
- 
+
             // we  have data. delete and send to slack
             request.post(url, {
                 form: {
@@ -47,9 +48,10 @@ app.use(express.bodyParser());
 // app.use(express.staticCache());
 app.use(express.static(path.join(__dirname, '../client/app')));
 
+// rest paths for application
 app.get('/cr/:id', function(req, res) {
-  console.log('into cr/:id');
-  res.redirect('/#/cr/' + req.params.id)
+    console.log('into cr/:id');
+    res.redirect('/#/cr/' + req.params.id)
 });
 app.get('/api/cr/:id', cr.findById);
 app.get('/api/cr/mock/:id', cr.mockFindById);
