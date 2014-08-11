@@ -21,12 +21,16 @@ angular.module('app')
         var ref = new Firebase("https://amber-fire-1059.firebaseio.com/");
         $scope.messages = $firebase(ref.limit(10)).$asArray();
         // console.log($firebase(ref).$asObject());
+        console.dir($scope.messages.reverse());
         // var fireObject = $firebase(ref).$asObject();
         // fireObject.$bindTo($scope, "fires");
-
-        console.log($scope.messages);
-        
-
+        // fireObject.$loaded().then(function() {
+        //     // console.dir(fireObject);
+        //     angular.forEach(fireObject, function(value, key) {
+        //         // console.log(key, value);
+        //     });
+        // })
+        // console.log($scope.messages);
 
 
         if ($routeParams.crid) {
