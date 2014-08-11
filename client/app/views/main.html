@@ -70,7 +70,7 @@
     </div>
     <p></p>
     <div id="messagesDiv" class="alert alert-success">
-      <div ng-repeat="msg in messages"><em>{{msg.from}}</em>: {{msg.body}}</div>
+      <div ng-repeat="msg in messages" ><em>{{msg.from}}</em>: <a href="" ng-click="load(msg.body)">{{msg.body}}</a></div>
     </div>
   </div>
   </div>
