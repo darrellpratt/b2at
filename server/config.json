@@ -1,0 +1,6 @@
+{
+  "couchbaseAddress": "10.14.31.24:8091",
+  "couchbaseBucket": "default",
+  "b2atUrl": "http://b2at-dev.nielsen.com/ViewReport.aspx?report=scope&scope=",
+  "slackWebhook": "https://nielsen-buy.slack.com/services/hooks/incoming-webhook?token=f9DiEn10DkL2DAITVYFow68J"
+}

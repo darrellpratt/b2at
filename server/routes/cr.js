@@ -1,10 +1,15 @@
 var request = require('request');
+// config data for app
+var config = require('../config.json');
 // var formdata = require('form-data');
 var couchbase = require('couchbase');
 var JSON = require('JSON');
+
+
+// couchbase connection, can point to any install
 var db = new couchbase.Connection({
-    host: '10.14.31.24:8091',
-    bucket: 'default'
+    host: config.couchbaseAddress,
+    bucket: config.couchbaseBucket
 });
 
 var getRemoteItem = function(id) {
@@ -15,7 +20,7 @@ var getRemoteItem = function(id) {
     var dict = [];
     var matched = false;
 
-    request('http://b2at-dev.nielsen.com/ViewReport.aspx?report=scope&scope=' + id, function(error, response, body) {
+    request(config.b2atUrl + id, function(error, response, body) {
         var $ = cheerio.load(body);
         $('#scopeitem').children('h1').each(function(item) {
             CR['id'] = id;
@@ -36,10 +41,10 @@ exports.mockFindById = function(req, res) {
     var id = parseInt(req.params.id);
 };
 
+// main lookup method
 exports.findById = function(req, res) {
     console.log(req.params);
     var id = parseInt(req.params.id);
-    // getRemoteItem(id);
     console.log('findById: ' + id);
 
     var cheerio = require('cheerio');
@@ -52,7 +57,7 @@ exports.findById = function(req, res) {
         if (err) {
             // Failed to retrieve key
             console.log("no key in couchbase");
-            request('http://b2at-dev.nielsen.com/ViewReport.aspx?report=scope&scope=' + id, function(error, response, body) {
+            request(config.b2atUrl + id, function(error, response, body) {
                 var $ = cheerio.load(body);
                 if ($('.itext').length > 0) {
 
@@ -94,7 +99,8 @@ exports.findById = function(req, res) {
 exports.pushToSlack = function(req, res) {
     console.log('pushing to slack.com');
     var id = parseInt(req.params.id);
-    var url = 'https://nielsen-buy.slack.com/services/hooks/incoming-webhook?token=f9DiEn10DkL2DAITVYFow68J';
+    // incoming webhook url for slack.
+    var url = config.slackWebhook; 
 
     db.get(id, function(err, result) {
         console.log(result);
