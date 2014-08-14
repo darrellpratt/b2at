@@ -8,7 +8,6 @@
   },
   "dependencies": {
     "express": "3.x",
-    "jsdom": "*",
     "JSON": "^1.0.0",
     "jquery": "*",
     "http-agent": "*",
