@@ -59,6 +59,6 @@ app.get('/api/cr/mock/:id', cr.mockFindById);
 app.put('/api/cr/slack/:id', cr.pushToSlack);
 
 app.delete('/api/cr/couch/:id', cr.deleteFromCouch)
-
-app.listen(3000);
-console.log('Listening on port 3000...');
+app.set('port', process.env.PORT || 3000);
+app.listen(app.get('port'));
+console.log('Listening on port ' + app.get('port'));

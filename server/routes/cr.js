@@ -78,6 +78,9 @@ exports.findById = function(req, res) {
                     if (err) {
                         console.log("Error on fetching couchbase item");
                         console.log(err);
+                    } else {
+                        console.log("CouchResult");
+                        console.log(result);
                     }
                 })
 
